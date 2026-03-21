@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #0b0f1a;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Gradient */
+.gradient-text {
+  background: linear-gradient(90deg, #6C63FF, #00D1FF);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Glass */
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Animated Gradient */
+.gradient-bg {
+  background: linear-gradient(-45deg, #0b0f1a, #1a1f3a, #0b0f1a, #141a33);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.glass-strong {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.glass-light {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+}
+/* Section spacing */
+.section {
+  padding: 120px 20px;
+}
+
+/* Smooth reveal base */
+.fade-section {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+/* Glass hover */
+.glass-hover:hover {
+  transform: translateY(-10px) scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Neon glow hover */
+.glow-hover:hover {
+  box-shadow: 0 0 30px rgba(108,99,255,0.6);
+}
