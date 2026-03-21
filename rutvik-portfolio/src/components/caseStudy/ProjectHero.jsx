@@ -1,60 +1,48 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import useGsap from "../../hooks/useGsap";
 
 export default function ProjectHero({ project }) {
+  const ref = useRef();
+
+  useGsap((gsap) => {
+    gsap.from(".hero-item", {
+      opacity: 0,
+      y: 30,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "power2.out",
+    });
+  }, []);
+
   return (
-    <section className="mt-6">
+    <section ref={ref} className="mt-6 gpu">
 
-      {/* TITLE */}
-      <motion.h1
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-5xl md:text-6xl font-bold gradient-text"
-      >
+      <h1 className="hero-item text-5xl font-bold gradient-text">
         {project.title}
-      </motion.h1>
+      </h1>
 
-      {/* TAGLINE */}
-      <motion.p
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="text-gray-400 mt-4 max-w-2xl"
-      >
+      <p className="hero-item text-gray-400 mt-4 max-w-2xl">
         {project.tagline}
-      </motion.p>
+      </p>
 
-      {/* QUICK HIGHLIGHTS */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="flex flex-wrap gap-3 mt-6 text-sm"
-      >
+      <div className="hero-item flex flex-wrap gap-3 mt-6 text-sm">
         {project.tech?.slice(0, 4).map((tech, i) => (
-          <span
-            key={i}
-            className="glass px-3 py-1 rounded-full"
-          >
+          <span key={i} className="glass px-3 py-1 rounded-full">
             {tech}
           </span>
         ))}
-      </motion.div>
+      </div>
 
-      {/* CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="flex gap-4 mt-8 flex-wrap"
-      >
+      <div className="hero-item flex gap-4 mt-8 flex-wrap">
+
         {project.github && (
           <a
             href={project.github}
             target="_blank"
             rel="noreferrer"
-            className="bg-indigo-500 px-6 py-2 rounded-xl"
+            className="bg-indigo-500 px-6 py-2 rounded-xl hover:scale-105 transition"
           >
-            💻 View Code
+            💻 Code
           </a>
         )}
 
@@ -63,13 +51,13 @@ export default function ProjectHero({ project }) {
             href={project.live}
             target="_blank"
             rel="noreferrer"
-            className="bg-cyan-500 px-6 py-2 rounded-xl"
+            className="bg-cyan-500 px-6 py-2 rounded-xl hover:scale-105 transition"
           >
-            🔗 Live Demo
+            🔗 Live
           </a>
         )}
-      </motion.div>
 
+      </div>
     </section>
   );
 }

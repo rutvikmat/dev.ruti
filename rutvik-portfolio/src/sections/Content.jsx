@@ -1,52 +1,43 @@
-import { motion } from "framer-motion";
-import {
-  FaYoutube,
-  FaInstagram,
-  FaLinkedin,
-} from "react-icons/fa";
 import { useRef } from "react";
 import useGsap from "../hooks/useGsap";
+import socialLinks from "../data/social";
 
 export default function Content() {
   const ref = useRef();
 
-  // GSAP reveal animation
+  // 🔥 Optimized GSAP animation
   useGsap((gsap) => {
-    gsap.from(".content-card", {
+    gsap.from(".content-item", {
       opacity: 0,
-      y: 60,
-      stagger: 0.2,
+      y: 30,
+      duration: 0.5,
+      ease: "power2.out",
+      stagger: 0.12,
       scrollTrigger: {
         trigger: ref.current,
-        start: "top 80%",
+        start: "top 85%",
       },
     });
-  });
+  }, []);
 
   const platforms = [
     {
-      title: "Instagram Reels",
-      desc: "Short-form coding content helping beginners learn faster.",
-      stats: "Growing developer audience",
+      name: "Instagram",
+      desc: "Short-form coding content helping developers learn faster.",
       link: "https://www.instagram.com/dev.ruti/",
-      icon: <FaInstagram />,
-      color: "from-pink-500 to-purple-500",
+      color: "text-pink-400",
     },
     {
-      title: "YouTube Channel",
-      desc: "In-depth tutorials, project builds & coding series.",
-      stats: "Educational tech videos",
+      name: "YouTube",
+      desc: "Full tutorials, project builds & deep dives.",
       link: "https://www.youtube.com/@dev.ruties",
-      icon: <FaYoutube />,
-      color: "from-red-500 to-orange-500",
+      color: "text-red-400",
     },
     {
-      title: "LinkedIn",
-      desc: "Sharing insights, projects & professional growth.",
-      stats: "Professional network building",
+      name: "LinkedIn",
+      desc: "Professional updates, projects & insights.",
       link: "https://www.linkedin.com/in/rutvik-mathapati-3a5577208/",
-      icon: <FaLinkedin />,
-      color: "from-blue-500 to-cyan-500",
+      color: "text-blue-400",
     },
   ];
 
@@ -55,132 +46,100 @@ export default function Content() {
       ref={ref}
       className="section relative overflow-hidden"
     >
-      {/* 🌌 BACKGROUND GLOW */}
-      <div className="absolute w-[500px] h-[500px] bg-indigo-500 opacity-10 blur-[140px] rounded-full bottom-0 right-0"></div>
+      {/* 🌌 LIGHT GLOW */}
+      <div className="absolute w-[400px] h-[400px] bg-indigo-500 opacity-10 blur-[60px] rounded-full bottom-0 right-0"></div>
 
       <div className="max-w-6xl mx-auto text-center">
 
         {/* TITLE */}
-        <h2 className="text-4xl gradient-text mb-6">
+        <h2 className="text-4xl gradient-text mb-6 content-item">
           Content & Community
         </h2>
 
         {/* DESCRIPTION */}
-        <p className="text-gray-400 max-w-2xl mx-auto mb-12">
-          Beyond development, I actively share knowledge and help developers grow
-          through tutorials, real-world projects, and practical coding insights.
+        <p className="text-gray-400 max-w-2xl mx-auto mb-12 content-item">
+          I share coding knowledge, real-world projects, and practical
+          insights to help developers grow faster.
         </p>
 
         {/* PLATFORM CARDS */}
         <div className="grid md:grid-cols-3 gap-8">
 
           {platforms.map((item, i) => (
-            <motion.div
+            <div
               key={i}
-              whileHover={{ scale: 1.05 }}
-              className="glass-strong p-6 rounded-2xl content-card flex flex-col justify-between"
+              className="content-item glass-strong p-6 rounded-2xl hover:scale-[1.03] transition gpu"
             >
-              {/* ICON */}
-              <div
-                className={`text-3xl mb-4 bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
-              >
-                {item.icon}
-              </div>
-
-              {/* TITLE */}
-              <h3 className="text-xl font-semibold mb-2">
-                {item.title}
+              <h3 className={`text-xl font-semibold mb-2 ${item.color}`}>
+                {item.name}
               </h3>
 
-              {/* DESC */}
               <p className="text-gray-400 text-sm">
                 {item.desc}
               </p>
 
-              {/* STATS */}
-              <p className="text-xs text-gray-500 mt-3">
-                {item.stats}
-              </p>
-
-              {/* LINK */}
               <a
                 href={item.link}
                 target="_blank"
                 rel="noreferrer"
                 data-cursor="Visit"
-                className="mt-4 inline-block text-sm text-cyan-400 hover:underline"
+                className="inline-block mt-4 text-sm text-cyan-400 hover:underline"
               >
                 🔗 Visit Platform
               </a>
-            </motion.div>
+            </div>
           ))}
 
         </div>
 
-        {/* 📊 IMPACT METRICS */}
-        <div className="mt-16 flex flex-wrap justify-center gap-10">
+        {/* 📊 METRICS */}
+        <div className="mt-16 flex justify-center flex-wrap gap-10 content-item">
 
-          <div className="text-center">
+          <div>
             <h3 className="text-2xl font-bold">10K+</h3>
             <p className="text-gray-500 text-sm">Learners Reached</p>
           </div>
 
-          <div className="text-center">
+          <div>
             <h3 className="text-2xl font-bold">100+</h3>
             <p className="text-gray-500 text-sm">Content Posts</p>
           </div>
 
-          <div className="text-center">
+          <div>
             <h3 className="text-2xl font-bold">Daily</h3>
-            <p className="text-gray-500 text-sm">Content Creation</p>
+            <p className="text-gray-500 text-sm">Consistency</p>
           </div>
 
         </div>
 
-        {/* 🎥 OPTIONAL FEATURED CONTENT */}
-        <div className="mt-20">
+        {/* SOCIAL ICONS */}
+        <div className="mt-10 flex justify-center gap-6 text-xl text-indigo-400 content-item">
 
-          <h3 className="text-2xl font-semibold mb-6">
-            Featured Content
-          </h3>
-
-          <div className="grid md:grid-cols-2 gap-6">
-
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="glass p-4 rounded-xl"
-            >
-              <div className="h-48 bg-gray-800 rounded mb-3 flex items-center justify-center text-gray-500">
-                YouTube Video Preview
-              </div>
-              <p className="text-sm text-gray-400">
-                Building Full Stack Project 🚀
-              </p>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="glass p-4 rounded-xl"
-            >
-              <div className="h-48 bg-gray-800 rounded mb-3 flex items-center justify-center text-gray-500">
-                Instagram Reel Preview
-              </div>
-              <p className="text-sm text-gray-400">
-                JavaScript Tips & Tricks ⚡
-              </p>
-            </motion.div>
-
-          </div>
+          {socialLinks.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={i}
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor={item.name}
+                className="hover:scale-110 transition"
+              >
+                <Icon />
+              </a>
+            );
+          })}
 
         </div>
 
-        {/* 🚀 CTA */}
-        <div className="mt-16">
+        {/* CTA */}
+        <div className="mt-12 content-item">
           <a
             href="https://www.instagram.com/dev.ruti/"
             target="_blank"
             rel="noreferrer"
-            className="bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 rounded-xl"
+            className="bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 rounded-xl hover:opacity-90 transition"
           >
             Follow My Journey 🚀
           </a>

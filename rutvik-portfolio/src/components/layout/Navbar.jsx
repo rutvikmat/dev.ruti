@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -7,31 +6,34 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const y = window.scrollY;
 
-      const sections = ["home", "about", "skills", "projects", "contact"];
+      // Navbar background change
+      setScrolled(y > 40);
 
-      sections.forEach((id) => {
+      // Active section detection (lightweight)
+      const sections = ["home", "about", "skills", "experience", "projects", "contact"];
+
+      for (let id of sections) {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 120) {
+        if (el && y >= el.offsetTop - 120) {
           setActive(id);
         }
-      });
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const linkClass = (id) =>
-    `relative cursor-pointer ${
+    `text-sm cursor-pointer transition ${
       active === id ? "text-indigo-400" : "text-gray-300"
     }`;
 
   return (
-    <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
+    <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
           ? "bg-black/70 backdrop-blur border-b border-gray-800"
@@ -41,43 +43,36 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
         {/* LOGO */}
-        <h1 className="text-xl font-bold gradient-text cursor-pointer">
+        <h1 className="text-lg font-semibold gradient-text">
           Rutvik.dev
         </h1>
 
-        {/* NAV LINKS */}
-        <div className="hidden md:flex gap-8 text-sm">
-
-          {["home", "about", "skills", "projects", "contact"].map((item) => (
-            <a
-              key={item}
-              href={`#${item}`}
-              className={linkClass(item)}
-              data-cursor="Go"
-            >
-              {item.charAt(0).toUpperCase() + item.slice(1)}
-
-              {active === item && (
-                <motion.span
-                  layoutId="underline"
-                  className="absolute left-0 -bottom-1 h-[2px] w-full bg-indigo-400"
-                />
-              )}
-            </a>
-          ))}
-
+        {/* LINKS */}
+        <div className="hidden md:flex gap-8">
+          {["home", "about", "skills", "experience", "projects", "contact"].map(
+            (item) => (
+              <a
+                key={item}
+                href={`#${item}`}
+                data-cursor="Go"
+                className={linkClass(item)}
+              >
+                {item.charAt(0).toUpperCase() + item.slice(1)}
+              </a>
+            )
+          )}
         </div>
 
         {/* CTA */}
         <a
           href="#contact"
           data-cursor="Hire"
-          className="hidden md:block bg-gradient-to-r from-indigo-500 to-cyan-500 px-4 py-2 rounded-lg text-sm"
+          className="hidden md:block bg-gradient-to-r from-indigo-500 to-cyan-500 px-4 py-2 rounded-lg text-sm hover:opacity-90 transition"
         >
           Hire Me
         </a>
 
       </div>
-    </motion.nav>
+    </nav>
   );
 }

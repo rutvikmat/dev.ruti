@@ -1,22 +1,23 @@
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import useGsap from "../hooks/useGsap";
 
 export default function Experience() {
   const ref = useRef();
 
-  // GSAP reveal animation
+  // 🔥 Optimized GSAP animation
   useGsap((gsap) => {
-    gsap.from(".exp-card", {
+    gsap.from(".exp-item", {
       opacity: 0,
-      y: 60,
-      stagger: 0.2,
+      y: 30,
+      duration: 0.5,
+      ease: "power2.out",
+      stagger: 0.12,
       scrollTrigger: {
         trigger: ref.current,
-        start: "top 80%",
+        start: "top 85%",
       },
     });
-  });
+  }, []);
 
   const experiences = [
     {
@@ -24,34 +25,34 @@ export default function Experience() {
       company: "Internship Experience",
       duration: "2024 – 2025",
       points: [
-        "Built full-stack applications using Django & Java",
+        "Built scalable web applications using Django & Java",
         "Developed REST APIs and authentication systems",
-        "Integrated payment gateway (Razorpay)",
-        "Optimized database queries for performance",
+        "Integrated Razorpay payment gateway",
+        "Optimized database queries for better performance",
       ],
       tech: ["Django", "Java", "MySQL", "REST API"],
     },
     {
       role: "Project Developer",
-      company: "Academic + Personal Projects",
+      company: "Academic & Personal Projects",
       duration: "2023 – Present",
       points: [
-        "Developed Car Rental System with booking & billing",
+        "Developed Car Rental platform with booking & billing",
         "Built SYNCHER (ML-based prediction system)",
         "Created AI Nail Disease Classifier with Grad-CAM",
-        "Implemented real-world systems with scalable architecture",
+        "Designed scalable systems with real-world architecture",
       ],
-      tech: ["Python", "ML", "Flask", "React"],
+      tech: ["Python", "Flask", "React", "Machine Learning"],
     },
     {
       role: "Tech Content Creator",
       company: "Instagram & YouTube",
       duration: "2023 – Present",
       points: [
-        "Created coding tutorials and project-based content",
+        "Created coding tutorials and real-world project content",
         "Helped 10K+ learners understand development concepts",
-        "Shared real-world project implementations",
         "Built strong developer community engagement",
+        "Shared practical coding insights and strategies",
       ],
       tech: ["Content Creation", "Teaching", "Branding"],
     },
@@ -59,16 +60,17 @@ export default function Experience() {
 
   return (
     <section
+      id="experience"
       ref={ref}
       className="section relative overflow-hidden"
     >
-      {/* 🌌 BACKGROUND GLOW */}
-      <div className="absolute w-[500px] h-[500px] bg-indigo-500 opacity-10 blur-[140px] rounded-full top-0 left-1/2 -translate-x-1/2"></div>
+      {/* 🌌 LIGHT GLOW */}
+      <div className="absolute w-[400px] h-[400px] bg-indigo-500 opacity-10 blur-[60px] rounded-full top-0 left-1/2 -translate-x-1/2"></div>
 
       <div className="max-w-6xl mx-auto">
 
         {/* TITLE */}
-        <h2 className="text-4xl gradient-text text-center mb-16">
+        <h2 className="text-4xl gradient-text text-center mb-16 exp-item">
           Experience
         </h2>
 
@@ -76,16 +78,15 @@ export default function Experience() {
         <div className="relative border-l border-gray-700 pl-6 space-y-12">
 
           {experiences.map((exp, i) => (
-            <motion.div
+            <div
               key={i}
-              whileHover={{ scale: 1.02 }}
-              className="exp-card relative"
+              className="exp-item relative gpu"
             >
               {/* DOT */}
               <div className="absolute -left-[11px] top-2 w-4 h-4 bg-indigo-500 rounded-full"></div>
 
               {/* CARD */}
-              <div className="glass-strong p-6 rounded-2xl">
+              <div className="glass-strong p-6 rounded-2xl hover:scale-[1.02] transition">
 
                 {/* HEADER */}
                 <div className="flex justify-between flex-wrap gap-2">
@@ -110,7 +111,7 @@ export default function Experience() {
                   ))}
                 </ul>
 
-                {/* TECH STACK */}
+                {/* TECH */}
                 <div className="flex flex-wrap gap-2 mt-4">
                   {exp.tech.map((t, idx) => (
                     <span
@@ -123,7 +124,7 @@ export default function Experience() {
                 </div>
 
               </div>
-            </motion.div>
+            </div>
           ))}
 
         </div>

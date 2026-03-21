@@ -6,12 +6,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function useGsap(callback, deps = []) {
   useEffect(() => {
+    if (!callback) return;
+
+    // 🔥 GSAP context for scoped animations
     const ctx = gsap.context(() => {
-      callback(gsap);
+      callback(gsap, ScrollTrigger);
     });
 
-    ScrollTrigger.refresh(); // 🔥 important
+    // 🔥 Refresh ScrollTrigger AFTER animations are set
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
 
-    return () => ctx.revert();
+    // 🔥 Cleanup (very important)
+    return () => {
+      ctx.revert();
+      ScrollTrigger.killAll(false); // kills only inactive triggers
+    };
   }, deps);
 }

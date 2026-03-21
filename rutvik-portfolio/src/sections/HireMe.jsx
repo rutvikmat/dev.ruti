@@ -1,138 +1,91 @@
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import useGsap from "../hooks/useGsap";
 
 export default function HireMe() {
   const ref = useRef();
 
-  // GSAP reveal
+  // 🔥 Optimized GSAP animation
   useGsap((gsap) => {
-    gsap.from(".hire-card", {
+    gsap.from(".hire-item", {
       opacity: 0,
-      y: 60,
-      stagger: 0.15,
+      y: 30,
+      duration: 0.5,
+      ease: "power2.out",
+      stagger: 0.12,
       scrollTrigger: {
         trigger: ref.current,
-        start: "top 80%",
+        start: "top 85%",
       },
     });
-  });
-
-  const services = [
-    {
-      title: "Full Stack Web Development",
-      desc: "Building scalable, production-ready web applications using modern tech.",
-      icon: "🚀",
-    },
-    {
-      title: "Backend & API Development",
-      desc: "Designing secure REST APIs and robust backend systems.",
-      icon: "⚙️",
-    },
-    {
-      title: "Payment Integration",
-      desc: "Integrating Razorpay and other payment solutions seamlessly.",
-      icon: "💳",
-    },
-    {
-      title: "Authentication Systems",
-      desc: "Implementing secure login, JWT auth, and user management.",
-      icon: "🔐",
-    },
-    {
-      title: "Performance Optimization",
-      desc: "Improving app speed, DB queries, and scalability.",
-      icon: "📈",
-    },
-    {
-      title: "UI/UX Development",
-      desc: "Designing modern, responsive, and interactive user interfaces.",
-      icon: "🎨",
-    },
-  ];
+  }, []);
 
   return (
     <section
       ref={ref}
-      className="section relative overflow-hidden"
+      className="section relative overflow-hidden text-center"
     >
-      {/* 🌌 BACKGROUND GLOW */}
-      <div className="absolute w-[500px] h-[500px] bg-indigo-500 opacity-10 blur-[140px] rounded-full top-0 right-0"></div>
+      {/* 🌌 LIGHT GLOW */}
+      <div className="absolute w-[400px] h-[400px] bg-indigo-500 opacity-10 blur-[60px] rounded-full bottom-0 left-1/2 -translate-x-1/2"></div>
 
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto gpu">
 
         {/* TITLE */}
-        <h2 className="text-4xl gradient-text mb-6">
-          What I Can Do For You
+        <h2 className="text-4xl gradient-text mb-6 hire-item">
+          Let’s Build Something Great Together 🚀
         </h2>
 
-        {/* SUBTEXT */}
-        <p className="text-gray-400 max-w-2xl mx-auto mb-12">
-          I help businesses and individuals build scalable applications,
-          optimize performance, and create modern digital experiences.
+        {/* DESCRIPTION */}
+        <p className="text-gray-400 mb-10 hire-item">
+          I’m available for internships, freelance projects, and full-time
+          opportunities. I specialize in building scalable systems and
+          real-world applications with clean architecture.
         </p>
 
-        {/* SERVICES GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* VALUE POINTS */}
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
 
-          {services.map((service, i) => (
-            <motion.div
+          {[
+            "⚡ Scalable Web Applications",
+            "🔐 Secure Authentication Systems",
+            "💳 Payment Integration",
+          ].map((item, i) => (
+            <div
               key={i}
-              whileHover={{ scale: 1.05 }}
-              className="glass-strong p-6 rounded-2xl hire-card"
+              className="hire-item glass p-4 rounded-xl text-sm hover:scale-[1.03] transition"
             >
-              {/* ICON */}
-              <div className="text-3xl mb-4">
-                {service.icon}
-              </div>
-
-              {/* TITLE */}
-              <h3 className="text-lg font-semibold mb-2">
-                {service.title}
-              </h3>
-
-              {/* DESC */}
-              <p className="text-gray-400 text-sm">
-                {service.desc}
-              </p>
-            </motion.div>
+              {item}
+            </div>
           ))}
 
         </div>
 
-        {/* 💼 AVAILABILITY + CTA */}
-        <div className="mt-16">
+        {/* CTA BUTTONS */}
+        <div className="flex flex-wrap justify-center gap-4 hire-item">
 
-          <p className="text-green-400 text-sm mb-3">
-            ● Currently available for freelance & full-time opportunities
-          </p>
+          <a
+            href="#contact"
+            data-cursor="Hire"
+            className="bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 rounded-xl hover:opacity-90 transition"
+          >
+            💼 Hire Me
+          </a>
 
-          <h3 className="text-2xl font-semibold mb-4">
-            Let’s build something impactful together 🚀
-          </h3>
-
-          <div className="flex justify-center flex-wrap gap-4">
-
-            <a
-              href="#contact"
-              data-cursor="Hire"
-              className="bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 rounded-xl"
-            >
-              💼 Hire Me
-            </a>
-
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              data-cursor="Resume"
-              className="glass px-6 py-3 rounded-xl"
-            >
-              📄 View Resume
-            </a>
-
-          </div>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            data-cursor="Resume"
+            className="glass px-6 py-3 rounded-xl hover:scale-105 transition"
+          >
+            📄 View Resume
+          </a>
 
         </div>
+
+        {/* AVAILABILITY */}
+        <p className="mt-6 text-green-400 text-sm hire-item">
+          ● Available for opportunities
+        </p>
 
       </div>
     </section>

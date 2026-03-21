@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import useGsap from "../../hooks/useGsap";
 
@@ -9,11 +8,12 @@ export default function ProjectSection({
 }) {
   const ref = useRef();
 
-  // GSAP reveal
   useGsap((gsap) => {
     gsap.from(ref.current, {
       opacity: 0,
-      y: 50,
+      y: 30,
+      duration: 0.6,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: ref.current,
         start: "top 85%",
@@ -24,21 +24,15 @@ export default function ProjectSection({
   if (!content) return null;
 
   return (
-    <section ref={ref} className="mt-16">
+    <section ref={ref} className="mt-16 gpu">
 
-      {/* TITLE */}
       <h2 className={`text-2xl font-semibold ${color}`}>
         {title}
       </h2>
 
-      {/* CONTENT */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        className="text-gray-400 mt-3 leading-relaxed max-w-3xl"
-      >
+      <p className="text-gray-400 mt-3 leading-relaxed max-w-3xl">
         {content}
-      </motion.p>
+      </p>
 
     </section>
   );

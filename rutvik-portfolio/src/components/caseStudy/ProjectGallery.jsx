@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function ProjectGallery({ images = [] }) {
@@ -7,34 +6,26 @@ export default function ProjectGallery({ images = [] }) {
   if (!images.length) return null;
 
   return (
-    <section className="mt-12">
+    <section className="mt-12 gpu">
 
       {/* MAIN IMAGE */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="glass-strong p-3 rounded-2xl"
-      >
-        <motion.img
-          key={active}
+      <div className="glass-strong p-3 rounded-2xl">
+        <img
           src={images[active]}
           alt="project"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="rounded-xl w-full"
+          className="rounded-xl w-full transition-transform duration-300 hover:scale-[1.02]"
         />
-      </motion.div>
+      </div>
 
       {/* THUMBNAILS */}
       <div className="flex gap-4 mt-6 overflow-x-auto">
 
         {images.map((img, i) => (
-          <motion.img
+          <img
             key={i}
             src={img}
             onClick={() => setActive(i)}
-            whileHover={{ scale: 1.05 }}
-            className={`w-28 h-20 object-cover rounded-lg cursor-pointer border-2 ${
+            className={`w-28 h-20 object-cover rounded-lg cursor-pointer border-2 transition ${
               active === i
                 ? "border-indigo-500"
                 : "border-transparent"
