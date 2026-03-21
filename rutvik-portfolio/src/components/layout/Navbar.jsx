@@ -9,10 +9,11 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      const sections = ["home", "projects", "contact"];
+      const sections = ["home", "about", "skills", "projects", "contact"];
+
       sections.forEach((id) => {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 100) {
+        if (el && window.scrollY >= el.offsetTop - 120) {
           setActive(id);
         }
       });
@@ -41,21 +42,21 @@ export default function Navbar() {
 
         {/* LOGO */}
         <h1 className="text-xl font-bold gradient-text cursor-pointer">
-          dev.ruti
+          Rutvik.dev
         </h1>
 
         {/* NAV LINKS */}
         <div className="hidden md:flex gap-8 text-sm">
 
-          {["home", "projects", "contact"].map((item) => (
+          {["home", "about", "skills", "projects", "contact"].map((item) => (
             <a
               key={item}
               href={`#${item}`}
               className={linkClass(item)}
+              data-cursor="Go"
             >
               {item.charAt(0).toUpperCase() + item.slice(1)}
 
-              {/* UNDERLINE ANIMATION */}
               {active === item && (
                 <motion.span
                   layoutId="underline"
@@ -67,8 +68,14 @@ export default function Navbar() {
 
         </div>
 
-        {/* CTA BUTTON */}
-       
+        {/* CTA */}
+        <a
+          href="#contact"
+          data-cursor="Hire"
+          className="hidden md:block bg-gradient-to-r from-indigo-500 to-cyan-500 px-4 py-2 rounded-lg text-sm"
+        >
+          Hire Me
+        </a>
 
       </div>
     </motion.nav>

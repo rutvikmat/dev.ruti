@@ -1,12 +1,16 @@
 import { motion } from "framer-motion";
-import { FaYoutube, FaInstagram, FaLinkedin } from "react-icons/fa";
+import {
+  FaYoutube,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa";
 import { useRef } from "react";
 import useGsap from "../hooks/useGsap";
 
 export default function Content() {
   const ref = useRef();
 
-  // GSAP reveal
+  // GSAP reveal animation
   useGsap((gsap) => {
     gsap.from(".content-card", {
       opacity: 0,
@@ -19,34 +23,39 @@ export default function Content() {
     });
   });
 
-  const content = [
+  const platforms = [
     {
-      title: "📱 Instagram Reels",
+      title: "Instagram Reels",
       desc: "Short-form coding content helping beginners learn faster.",
       stats: "Growing developer audience",
       link: "https://www.instagram.com/dev.ruti/",
       icon: <FaInstagram />,
+      color: "from-pink-500 to-purple-500",
     },
     {
-      title: "🎥 YouTube Channel",
+      title: "YouTube Channel",
       desc: "In-depth tutorials, project builds & coding series.",
       stats: "Educational tech videos",
       link: "https://www.youtube.com/@dev.ruties",
       icon: <FaYoutube />,
+      color: "from-red-500 to-orange-500",
     },
     {
-      title: "💼 LinkedIn Presence",
-      desc: "Sharing insights, projects & professional updates.",
-      stats: "Professional network growth",
+      title: "LinkedIn",
+      desc: "Sharing insights, projects & professional growth.",
+      stats: "Professional network building",
       link: "https://www.linkedin.com/in/rutvik-mathapati-3a5577208/",
       icon: <FaLinkedin />,
+      color: "from-blue-500 to-cyan-500",
     },
   ];
 
   return (
-    <section ref={ref} className="section relative overflow-hidden">
-
-      {/* BACKGROUND GLOW */}
+    <section
+      ref={ref}
+      className="section relative overflow-hidden"
+    >
+      {/* 🌌 BACKGROUND GLOW */}
       <div className="absolute w-[500px] h-[500px] bg-indigo-500 opacity-10 blur-[140px] rounded-full bottom-0 right-0"></div>
 
       <div className="max-w-6xl mx-auto text-center">
@@ -59,20 +68,22 @@ export default function Content() {
         {/* DESCRIPTION */}
         <p className="text-gray-400 max-w-2xl mx-auto mb-12">
           Beyond development, I actively share knowledge and help developers grow
-          through educational content, tutorials, and real-world coding insights.
+          through tutorials, real-world projects, and practical coding insights.
         </p>
 
-        {/* CARDS */}
+        {/* PLATFORM CARDS */}
         <div className="grid md:grid-cols-3 gap-8">
 
-          {content.map((item, i) => (
+          {platforms.map((item, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.05 }}
               className="glass-strong p-6 rounded-2xl content-card flex flex-col justify-between"
             >
               {/* ICON */}
-              <div className="text-3xl mb-4 text-indigo-400">
+              <div
+                className={`text-3xl mb-4 bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
+              >
                 {item.icon}
               </div>
 
@@ -95,6 +106,8 @@ export default function Content() {
               <a
                 href={item.link}
                 target="_blank"
+                rel="noreferrer"
+                data-cursor="Visit"
                 className="mt-4 inline-block text-sm text-cyan-400 hover:underline"
               >
                 🔗 Visit Platform
@@ -104,11 +117,11 @@ export default function Content() {
 
         </div>
 
-        {/* IMPACT METRICS */}
+        {/* 📊 IMPACT METRICS */}
         <div className="mt-16 flex flex-wrap justify-center gap-10">
 
           <div className="text-center">
-            <h3 className="text-2xl font-bold">1K+</h3>
+            <h3 className="text-2xl font-bold">10K+</h3>
             <p className="text-gray-500 text-sm">Learners Reached</p>
           </div>
 
@@ -124,11 +137,49 @@ export default function Content() {
 
         </div>
 
-        {/* CTA */}
-        <div className="mt-12">
+        {/* 🎥 OPTIONAL FEATURED CONTENT */}
+        <div className="mt-20">
+
+          <h3 className="text-2xl font-semibold mb-6">
+            Featured Content
+          </h3>
+
+          <div className="grid md:grid-cols-2 gap-6">
+
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="glass p-4 rounded-xl"
+            >
+              <div className="h-48 bg-gray-800 rounded mb-3 flex items-center justify-center text-gray-500">
+                YouTube Video Preview
+              </div>
+              <p className="text-sm text-gray-400">
+                Building Full Stack Project 🚀
+              </p>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="glass p-4 rounded-xl"
+            >
+              <div className="h-48 bg-gray-800 rounded mb-3 flex items-center justify-center text-gray-500">
+                Instagram Reel Preview
+              </div>
+              <p className="text-sm text-gray-400">
+                JavaScript Tips & Tricks ⚡
+              </p>
+            </motion.div>
+
+          </div>
+
+        </div>
+
+        {/* 🚀 CTA */}
+        <div className="mt-16">
           <a
             href="https://www.instagram.com/dev.ruti/"
             target="_blank"
+            rel="noreferrer"
             className="bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 rounded-xl"
           >
             Follow My Journey 🚀

@@ -4,23 +4,25 @@ import { TypeAnimation } from "react-type-animation";
 import useGithub from "../hooks/useGithub";
 import MagneticButton from "../components/ui/MagneticButton";
 import ParticlesBg from "../components/ui/ParticlesBg";
-import profile from "../assets/images/profile.png";
+
 export default function Hero() {
   const ref = useRef();
   const github = useGithub("rutvikmat");
 
+  // Scroll parallax
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 400], [0, -120]);
 
   return (
     <section
+      id="home"
       ref={ref}
       className="min-h-screen gradient-bg flex flex-col md:flex-row items-center justify-center gap-12 px-6 md:px-16 relative overflow-hidden"
     >
-      {/* PARTICLES */}
+      {/* 🌌 PARTICLES */}
       <ParticlesBg />
 
-      {/* FLOATING GLASS ORBS */}
+      {/* 🔮 FLOATING GLASS ORBS */}
       <motion.div
         animate={{ y: [0, -40, 0] }}
         transition={{ repeat: Infinity, duration: 6 }}
@@ -29,23 +31,26 @@ export default function Hero() {
       <motion.div
         animate={{ y: [0, 30, 0] }}
         transition={{ repeat: Infinity, duration: 8 }}
-        className="absolute bottom-10 right-10 w-32 h-32 rounded-full glass-light blur-xl"
+        className="absolute bottom-10 right-10 w-32 h-32 rounded-full glass blur-xl"
       />
 
-      {/* LEFT CONTENT */}
+      {/* LEFT SIDE */}
       <motion.div style={{ y }} className="flex-1 z-10 max-w-2xl">
 
-        {/* SMALL INTRO */}
+        {/* INTRO */}
         <p className="text-sm text-gray-400 mb-2">
           👋 Welcome to my portfolio
         </p>
 
-        {/* MAIN HEADING */}
+        {/* NAME */}
         <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-          Hi, I'm <span className="gradient-text">Rutvik Mathapati</span>
+          Hi, I'm{" "}
+          <span className="gradient-text">
+            Rutvik Mathapati
+          </span>
         </h1>
 
-        {/* TYPING ROLES */}
+        {/* TYPING ANIMATION */}
         <div className="mt-4 text-xl text-gray-300 font-medium">
           <TypeAnimation
             sequence={[
@@ -62,52 +67,60 @@ export default function Hero() {
           />
         </div>
 
-        {/* VALUE PROPOSITION */}
+        {/* DESCRIPTION */}
         <p className="mt-5 text-gray-400 leading-relaxed">
-          I design and build scalable web applications using modern technologies 
-          like Django, React, and Java. Alongside development, I create educational 
-          content to help thousands of developers learn coding through practical projects.
+          I build scalable web applications using Django, React, and Java,
+          and help developers learn coding through real-world projects,
+          tutorials, and content.
         </p>
 
-        {/* HIGHLIGHT POINTS */}
-        <div className="mt-6 flex flex-wrap gap-4 text-sm text-gray-300">
-          <span className="glass-light px-3 py-1 rounded-full">
-            🚀 Built Real-World Systems
+        {/* HIGHLIGHTS */}
+        <div className="mt-6 flex flex-wrap gap-3 text-sm">
+          <span className="glass px-3 py-1 rounded-full">
+            🚀 Real-world projects
           </span>
-          <span className="glass-light px-3 py-1 rounded-full">
-            💳 Razorpay Integration
+          <span className="glass px-3 py-1 rounded-full">
+            💳 Payment Integration
           </span>
-          <span className="glass-light px-3 py-1 rounded-full">
-            📈 Performance Optimized Apps
+          <span className="glass px-3 py-1 rounded-full">
+            🔐 Auth Systems
           </span>
-          <span className="glass-light px-3 py-1 rounded-full">
-            🎯 Teaching Thousands
+          <span className="glass px-3 py-1 rounded-full">
+            📊 ML Models
           </span>
         </div>
 
         {/* CTA BUTTONS */}
         <div className="mt-8 flex flex-wrap gap-4">
           <MagneticButton>
-            <a href="#projects">🚀 View Projects</a>
+            <a href="#projects" data-cursor="View">
+              🚀 View Projects
+            </a>
           </MagneticButton>
 
           <MagneticButton>
-            <a href="#contact">💼 Hire Me</a>
+            <a href="#contact" data-cursor="Hire">
+              💼 Hire Me
+            </a>
           </MagneticButton>
 
           <MagneticButton>
-            <a href="https://github.com/rutvikmat" target="_blank">
+            <a
+              href="https://github.com/rutvikmat"
+              target="_blank"
+              data-cursor="GitHub"
+            >
               💻 GitHub
             </a>
           </MagneticButton>
         </div>
 
-        {/* STATS + SOCIAL PROOF */}
+        {/* STATS */}
         <div className="mt-10 flex flex-wrap gap-8 text-center">
 
           <div>
-            <h3 className="text-2xl font-bold">1 K+</h3>
-            <p className="text-gray-500 text-sm">Followers</p>
+            <h3 className="text-2xl font-bold">10K+</h3>
+            <p className="text-gray-500 text-sm">Learners</p>
           </div>
 
           <div>
@@ -122,30 +135,42 @@ export default function Hero() {
 
           {github && (
             <div>
-              <h3 className="text-2xl font-bold">{github.public_repos}</h3>
-              <p className="text-gray-500 text-sm">GitHub Repos</p>
+              <h3 className="text-2xl font-bold">
+                {github.public_repos}
+              </h3>
+              <p className="text-gray-500 text-sm">
+                GitHub Repos
+              </p>
             </div>
           )}
         </div>
 
-        {/* QUICK LINKS */}
+        {/* SOCIAL LINKS */}
         <div className="mt-6 text-sm text-gray-400 flex gap-4 flex-wrap">
-          <a href="https://www.linkedin.com/in/rutvik-mathapati-3a5577208/" target="_blank">LinkedIn</a>
-          <a href="https://github.com/rutvikmat" target="_blank">GitHub</a>
-          <a href="https://www.instagram.com/dev.ruti/" target="_blank">Instagram</a>
-          <a href="https://www.youtube.com/@dev.ruties" target="_blank">YouTube</a>
+          <a href="https://linkedin.com" target="_blank">
+            LinkedIn
+          </a>
+          <a href="https://github.com/rutvikmat" target="_blank">
+            GitHub
+          </a>
+          <a href="https://instagram.com/dev.ruti" target="_blank">
+            Instagram
+          </a>
+          <a href="https://youtube.com/@dev.ruties" target="_blank">
+            YouTube
+          </a>
         </div>
 
       </motion.div>
 
-      {/* RIGHT IMAGE */}
+      {/* RIGHT SIDE IMAGE */}
       <motion.div
         whileHover={{ rotateY: 10, rotateX: 10 }}
         className="flex-1 flex justify-center z-10"
       >
         <div className="glass-strong p-3 rounded-2xl shadow-xl">
           <img
-            src="src/assets/images/profile.png" 
+            src="src/assets/images/profile.png"
             alt="Rutvik"
             className="w-80 rounded-xl"
           />

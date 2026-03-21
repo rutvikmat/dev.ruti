@@ -8,7 +8,9 @@ export default function MagneticButton({ children }) {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
 
-    ref.current.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    ref.current.style.transform = `translate(${x * 0.25}px, ${
+      y * 0.25
+    }px)`;
   };
 
   const reset = () => {
@@ -16,13 +18,13 @@ export default function MagneticButton({ children }) {
   };
 
   return (
-    <button
+    <div
       ref={ref}
       onMouseMove={handleMove}
       onMouseLeave={reset}
-      className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-xl transition-transform"
+      className="inline-block transition-transform"
     >
       {children}
-    </button>
+    </div>
   );
 }

@@ -1,21 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import ProjectDetails from "./pages/ProjectDetails";
 import Cursor from "./components/ui/Cursor";
-import { motion, useScroll } from "framer-motion";
 
 export default function App() {
-  const { scrollYProgress } = useScroll();
-
   return (
-    <>
+    <BrowserRouter>
       <Cursor />
-
-      {/* Scroll Progress */}
-      <motion.div
-        style={{ scaleX: scrollYProgress }}
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-cyan-500 origin-left z-50"
-      />
-
-      <Home />
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/project/:id" element={<ProjectDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
