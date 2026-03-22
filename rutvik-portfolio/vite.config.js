@@ -5,13 +5,16 @@ export default defineConfig({
   plugins: [react()],
 
   build: {
-    chunkSizeWarningLimit: 1000, // optional (avoid warning noise)
+    chunkSizeWarningLimit: 1000,
 
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["react", "react-dom"],
-          gsap: ["gsap"],
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("gsap")) return "gsap";
+            if (id.includes("react")) return "vendor";
+            return "vendor";
+          }
         },
       },
     },
