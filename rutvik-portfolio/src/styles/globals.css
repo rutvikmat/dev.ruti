@@ -318,3 +318,36 @@ body {
 .glow-card:hover::before {
   opacity: 1;
 }
+
+/* ============================= */
+/* 🔥 SKILL MICRO INTERACTIONS */
+/* ============================= */
+
+/* BAR GLOW ON HOVER */
+.skill-bar-fill {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.skill-bar-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.4),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.group:hover .skill-bar-fill::after {
+  opacity: 1;
+}
+
+/* ICON GLOW BOOST */
+.group:hover .icon-hover-glow {
+  filter: drop-shadow(0 0 10px rgba(108,99,255,0.8));
+}

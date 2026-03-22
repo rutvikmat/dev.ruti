@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import useGsap from "../hooks/useGsap";
 import TiltCard from "../components/ui/TiltCard";
+import Tooltip from "../components/ui/Tooltip";
 import skills from "../data/skills";
 
 export default function Skills() {
@@ -9,7 +10,7 @@ export default function Skills() {
 
   // 🔥 GSAP animations
   useGsap((gsap) => {
-    // Animate skill bars
+    // Animate bars
     gsap.utils.toArray(".skill-bar-fill").forEach((bar) => {
       const width = bar.getAttribute("data-width");
 
@@ -45,7 +46,6 @@ export default function Skills() {
   // 🔥 Categories
   const categories = ["All", ...skills.map((g) => g.category)];
 
-  // 🔥 Filter
   const filteredSkills =
     active === "All"
       ? skills
@@ -67,9 +67,8 @@ export default function Skills() {
           Skills & Technologies
         </h2>
 
-        {/* 🔥 FILTER BUTTONS */}
+        {/* 🔘 FILTER */}
         <div className="flex justify-center flex-wrap gap-3 mb-12 skill-anim">
-
           {categories.map((cat, i) => (
             <button
               key={i}
@@ -83,10 +82,9 @@ export default function Skills() {
               {cat}
             </button>
           ))}
-
         </div>
 
-        {/* SKILLS GRID */}
+        {/* GRID */}
         <div className="grid md:grid-cols-2 gap-10">
 
           {filteredSkills.map((group, i) => (
@@ -109,20 +107,29 @@ export default function Skills() {
                     const Icon = skill.icon;
 
                     return (
-                      <div key={idx}>
+                      <div key={idx} className="group">
 
                         {/* LABEL */}
                         <div className="flex justify-between text-sm mb-1">
-                          <span className="flex items-center gap-2">
+
+                          <span className="flex items-center gap-2 cursor-pointer">
+
                             {Icon && (
-                              <Icon className="text-lg text-indigo-400" />
+                              <Tooltip text={`${skill.name} • ${skill.level}%`}>
+                                <Icon className="text-lg text-indigo-400 icon-hover-glow transition-all duration-300 group-hover:scale-125 group-hover:-translate-y-1" />
+                              </Tooltip>
                             )}
-                            {skill.name}
+
+                            <span className="group-hover:text-white transition">
+                              {skill.name}
+                            </span>
+
                           </span>
 
                           <span className="text-gray-400">
                             {skill.level}%
                           </span>
+
                         </div>
 
                         {/* BAR */}
