@@ -1,19 +1,21 @@
 import { useRef } from "react";
 import useGsap from "../hooks/useGsap";
 import useGithub from "../hooks/useGithub";
+import socialLinks from "../data/social";
+import TechStrip from "../components/ui/TechStrip";
 
 export default function Hero() {
   const ref = useRef();
   const { data } = useGithub("rutvikmat");
 
-  // 🔥 Optimized GSAP animation (fast + smooth)
+  // 🔥 Smooth GSAP reveal
   useGsap((gsap) => {
     gsap.from(".hero-item", {
       opacity: 0,
       y: 30,
       duration: 0.5,
       ease: "power2.out",
-      stagger: 0.12,
+      stagger: 0.1,
     });
   }, []);
 
@@ -23,52 +25,32 @@ export default function Hero() {
       ref={ref}
       className="min-h-screen gradient-bg flex flex-col md:flex-row items-center justify-center gap-12 px-6 md:px-16 relative overflow-hidden"
     >
-      {/* 🌌 LIGHT GLOW (optimized) */}
+      {/* 🌌 SOFT BACKGROUND GLOW */}
       <div className="absolute w-[400px] h-[400px] bg-indigo-500 opacity-10 blur-[60px] rounded-full top-20 left-1/2 -translate-x-1/2"></div>
 
       {/* LEFT CONTENT */}
       <div className="flex-1 max-w-2xl z-10 gpu">
 
-        {/* INTRO */}
         <p className="text-sm text-gray-400 hero-item">
-          👋 Welcome to my portfolio
+          👋 Hey, I'm
         </p>
 
-        {/* NAME */}
-        <h1 className="text-5xl md:text-6xl font-bold leading-tight hero-item">
-          Hi, I'm{" "}
+        <h1 className="text-5xl md:text-6xl font-bold hero-item">
+          Rutvik{" "}
           <span className="gradient-text">
-            Rutvik Mathapati
+            Mathapati
           </span>
         </h1>
 
-        {/* ROLE */}
-        <h2 className="text-xl text-gray-300 mt-4 hero-item">
-          Full Stack Developer • AI/ML Enthusiast • Educator
+        <h2 className="text-xl text-gray-300 mt-3 hero-item">
+          Full Stack Developer • AI/ML • Educator
         </h2>
 
-        {/* DESCRIPTION */}
-        <p className="mt-5 text-gray-400 leading-relaxed hero-item">
-          I build scalable web applications using Django, React, and Java,
-          and help developers learn coding through real-world projects
-          and content.
+        <p className="mt-5 text-gray-400 hero-item leading-relaxed">
+          I build scalable applications using Django, React, and Java —
+          and help developers learn through real-world projects and
+          practical coding content.
         </p>
-
-        {/* HIGHLIGHTS */}
-        <div className="mt-6 flex flex-wrap gap-3 text-sm hero-item">
-          <span className="glass px-3 py-1 rounded-full">
-            🚀 Real Projects
-          </span>
-          <span className="glass px-3 py-1 rounded-full">
-            💳 Payment Systems
-          </span>
-          <span className="glass px-3 py-1 rounded-full">
-            🔐 Authentication
-          </span>
-          <span className="glass px-3 py-1 rounded-full">
-            📊 ML Apps
-          </span>
-        </div>
 
         {/* CTA */}
         <div className="mt-8 flex flex-wrap gap-4 hero-item">
@@ -89,20 +71,29 @@ export default function Hero() {
             💼 Hire Me
           </a>
 
-          <a
-            href="https://github.com/rutvikmat"
-            target="_blank"
-            rel="noreferrer"
-            data-cursor="GitHub"
-            className="glass px-6 py-3 rounded-xl hover:scale-105 transition"
-          >
-            💻 GitHub
-          </a>
+        </div>
 
+        {/* SOCIAL */}
+        <div className="mt-8 flex gap-5 text-xl text-indigo-400 hero-item">
+          {socialLinks.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={i}
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor={item.name}
+                className="hover:scale-110 transition"
+              >
+                <Icon />
+              </a>
+            );
+          })}
         </div>
 
         {/* STATS */}
-        <div className="mt-10 flex gap-8 text-center hero-item">
+        <div className="mt-10 flex gap-8 hero-item text-center">
 
           <div>
             <h3 className="text-2xl font-bold">10K+</h3>
@@ -129,19 +120,28 @@ export default function Hero() {
 
       </div>
 
-      {/* RIGHT SIDE IMAGE */}
-      <div className="flex-1 flex justify-center z-10 gpu">
+      {/* RIGHT SIDE */}
+      <div className="flex-1 flex justify-center relative z-10 gpu">
 
+        {/* 🌈 GRADIENT DEPTH */}
+        <div className="absolute w-[320px] h-[320px] bg-gradient-to-r from-indigo-500 to-cyan-500 opacity-20 blur-[80px] rounded-full"></div>
+
+        {/* PROFILE */}
         <div className="glass-strong p-3 rounded-2xl hover:scale-[1.02] transition">
 
           <img
-            src="src/assets/images/profile.png"  // 🔥 use optimized image
-            alt="Rutvik"
+            src="/profile.png"
+            alt="Rutvik Mathapati"
             className="w-80 rounded-xl"
           />
 
         </div>
 
+      </div>
+
+      {/* 🔥 TECH STACK STRIP */}
+      <div className="absolute bottom-6 left-0 w-full px-6">
+        <TechStrip />
       </div>
 
     </section>

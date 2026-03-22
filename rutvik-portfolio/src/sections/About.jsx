@@ -1,17 +1,19 @@
 import { useRef } from "react";
 import useGsap from "../hooks/useGsap";
+import Counter from "../components/ui/Counter";
+import TiltCard from "../components/ui/TiltCard";
 
 export default function About() {
   const ref = useRef();
 
-  // 🔥 Optimized GSAP animation
+  // 🔥 GSAP reveal (smooth + consistent)
   useGsap((gsap) => {
-    gsap.from(".about-item", {
+    gsap.from(".about-anim", {
       opacity: 0,
-      y: 30,
-      duration: 0.5,
-      ease: "power2.out",
+      y: 40,
+      duration: 0.6,
       stagger: 0.12,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: ref.current,
         start: "top 85%",
@@ -19,52 +21,59 @@ export default function About() {
     });
   }, []);
 
+  const cards = [
+    {
+      title: "Full Stack Development",
+      desc: "Building scalable, production-ready applications with clean architecture using Django, React, and Java.",
+    },
+    {
+      title: "Content & Teaching",
+      desc: "Helping developers learn faster through real-world projects, practical coding, and structured guidance.",
+    },
+    {
+      title: "Real-World Systems",
+      desc: "Developed Car Rental platform, SYNCHER (ML-based system), and AI Nail Disease Classifier.",
+    },
+  ];
+
   return (
     <section
       id="about"
       ref={ref}
       className="section relative overflow-hidden"
     >
-      {/* 🌌 LIGHT BACKGROUND GLOW (optimized) */}
-      <div className="absolute w-[400px] h-[400px] bg-indigo-500 opacity-10 blur-[60px] rounded-full top-0 left-1/2 -translate-x-1/2"></div>
+      {/* 🌌 BACKGROUND GLOW */}
+      <div className="absolute w-[500px] h-[500px] bg-indigo-500 opacity-10 blur-[80px] rounded-full top-0 left-1/2 -translate-x-1/2"></div>
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
 
-        {/* LEFT SIDE */}
+        {/* 🔥 LEFT SIDE (STORY) */}
         <div className="space-y-6 gpu">
 
-          <h2 className="text-4xl gradient-text about-item">
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text about-anim">
             About Me
           </h2>
 
-          <p className="text-gray-400 leading-relaxed about-item">
-            I’m a Full Stack Developer specializing in Java and Python,
-            focused on building scalable, real-world applications. My journey
-            started with curiosity about how systems work and evolved into
-            developing complete end-to-end platforms.
+          <p className="text-gray-400 leading-relaxed about-anim">
+            I’m a Full Stack Developer focused on building scalable,
+            production-ready applications using Django, React, and Java.
           </p>
 
-          <p className="text-gray-400 leading-relaxed about-item">
-            I’ve worked on production-level systems like a{" "}
-            <span className="text-white font-medium">
-              Car Rental Platform
-            </span>{" "}
-            and{" "}
-            <span className="text-white font-medium">
-              Dairy Management System
-            </span>, implementing APIs, authentication, and optimized workflows.
+          <p className="text-gray-400 leading-relaxed about-anim">
+            I design complete systems — from backend architecture,
+            authentication, and APIs to modern frontend experiences.
           </p>
 
-          <p className="text-gray-400 leading-relaxed about-item">
-            Alongside development, I actively teach coding and create content,
-            helping thousands of learners understand real-world programming
-            concepts through projects.
+          <p className="text-gray-400 leading-relaxed about-anim">
+            Alongside development, I create content and teach developers
+            through real-world projects, helping them build practical skills
+            and understand system design.
           </p>
 
           {/* 🔥 TAGS */}
-          <div className="flex flex-wrap gap-3 about-item text-sm">
+          <div className="flex flex-wrap gap-3 about-anim text-sm mt-4">
             <span className="glass px-3 py-1 rounded-full">
-              ⚡ Scalable Systems
+              🚀 Scalable Systems
             </span>
             <span className="glass px-3 py-1 rounded-full">
               🔐 Auth Systems
@@ -73,73 +82,72 @@ export default function About() {
               💳 Payments
             </span>
             <span className="glass px-3 py-1 rounded-full">
-              📊 ML Apps
+              📊 ML Systems
             </span>
-          </div>
-
-          {/* EDUCATION */}
-          <div className="about-item">
-            <h3 className="text-lg font-semibold">🎓 Education</h3>
-            <p className="text-gray-400 text-sm mt-1">
-              MCA – KLE College of Engineering  
-              <br />
-              BSc Computer Science – Karnataka University
-            </p>
           </div>
 
         </div>
 
-        {/* RIGHT SIDE (TIMELINE) */}
-        <div className="space-y-5 gpu">
+        {/* 🔥 RIGHT SIDE (PROOF + DEPTH) */}
+        <div className="space-y-6 gpu">
 
-          {[
-            {
-              year: "2019–2022",
-              title: "BSc Computer Science",
-              desc: "Built strong programming and system fundamentals",
-            },
-            {
-              year: "2024–2025",
-              title: "MCA",
-              desc: "Focused on full-stack and real-world applications",
-            },
-            {
-              year: "2024–2025",
-              title: "Full Stack Internships",
-              desc: "Worked on Django & Java production systems",
-            },
-            {
-              year: "Present",
-              title: "Developer + Educator",
-              desc: "Building apps and teaching developers",
-            },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="about-item glass-strong p-5 rounded-xl hover:scale-[1.02] transition"
-            >
-              <h4 className="text-sm text-indigo-400">
-                {item.year}
-              </h4>
-              <h3 className="text-lg font-semibold">
-                {item.title}
-              </h3>
-              <p className="text-gray-400 text-sm">
-                {item.desc}
-              </p>
-            </div>
+          {/* 🔥 METRICS */}
+          <div className="grid grid-cols-3 gap-4">
+
+            <TiltCard className="about-anim">
+              <div className="glass p-5 rounded-xl text-center glow-card">
+                <h3 className="text-2xl font-bold text-indigo-400">
+                  <Counter value={5} suffix="+" />
+                </h3>
+                <p className="text-gray-400 text-xs">Projects</p>
+              </div>
+            </TiltCard>
+
+            <TiltCard className="about-anim">
+              <div className="glass p-5 rounded-xl text-center glow-card">
+                <h3 className="text-2xl font-bold text-indigo-400">
+                  <Counter value={10} suffix="K+" />
+                </h3>
+                <p className="text-gray-400 text-xs">Learners</p>
+              </div>
+            </TiltCard>
+
+            <TiltCard className="about-anim">
+              <div className="glass p-5 rounded-xl text-center glow-card">
+                <h3 className="text-2xl font-bold text-indigo-400">
+                  <Counter value={2} suffix="+" />
+                </h3>
+                <p className="text-gray-400 text-xs">Years Exp</p>
+              </div>
+            </TiltCard>
+
+          </div>
+
+          {/* 🔥 EXPERIENCE / VALUE CARDS */}
+          {cards.map((item, i) => (
+            <TiltCard key={i} className="about-anim">
+              <div className="glass-strong p-5 rounded-xl glow-card">
+                <h3 className="text-sm font-semibold">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-xs mt-1 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </TiltCard>
           ))}
 
         </div>
 
       </div>
 
-      {/* BOTTOM SUMMARY */}
-      <div className="mt-20 text-center max-w-3xl mx-auto about-item text-gray-400">
-        I focus on solving real-world problems by combining strong backend
-        systems with modern frontend experiences, while continuously learning
-        and sharing knowledge with the developer community.
+      {/* 🔥 FINAL SUMMARY */}
+      <div className="mt-16 text-center max-w-3xl mx-auto about-anim text-gray-400 leading-relaxed">
+        I focus on solving real-world problems by combining backend
+        engineering with intuitive frontend experiences — while helping
+        developers grow through practical learning and real project exposure.
       </div>
+
     </section>
   );
 }

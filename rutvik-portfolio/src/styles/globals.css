@@ -6,21 +6,21 @@
 /* 🌌 BASE */
 /* ============================= */
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: #0b0f1a;
   color: #ffffff;
   font-family: "Inter", sans-serif;
-  cursor: none;
   overflow-x: hidden;
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
+  cursor: none;
 }
 
 /* ============================= */
-/* 🎨 GRADIENT */
+/* 🎨 GRADIENT SYSTEM */
 /* ============================= */
 
 .gradient-text {
@@ -32,19 +32,19 @@ html {
 .gradient-bg {
   background: radial-gradient(
       circle at 20% 20%,
-      rgba(108, 99, 255, 0.15),
+      rgba(108, 99, 255, 0.12),
       transparent 40%
     ),
     radial-gradient(
       circle at 80% 80%,
-      rgba(0, 209, 255, 0.1),
+      rgba(0, 209, 255, 0.08),
       transparent 40%
     ),
     #0b0f1a;
 }
 
 /* ============================= */
-/* 🧊 GLASS (OPTIMIZED) */
+/* 🧊 GLASS (LIGHTWEIGHT) */
 /* ============================= */
 
 .glass {
@@ -68,75 +68,28 @@ html {
 }
 
 /* ============================= */
-/* 🖱️ CURSOR */
+/* ⚡ GPU ACCELERATION */
 /* ============================= */
 
-.custom-cursor {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-.cursor-inner {
-  padding: 5px 8px;
-  font-size: 10px;
-  border-radius: 6px;
-  background: #6c63ff;
-  color: white;
+.gpu {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* ============================= */
-/* 💥 RIPPLE (LIGHTWEIGHT) */
+/* 🎯 HOVER UTILITIES */
 /* ============================= */
 
-.ripple {
-  position: fixed;
-  border-radius: 50%;
-  background: rgba(108, 99, 255, 0.4);
-  animation: rippleAnim 0.5s linear;
-  pointer-events: none;
+.hover-scale {
+  transition: transform 0.25s ease;
 }
 
-@keyframes rippleAnim {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
+.hover-scale:hover {
+  transform: scale(1.04);
 }
 
 /* ============================= */
-/* 🔦 SPOTLIGHT (LIGHTER) */
-/* ============================= */
-
-.spotlight {
-  position: fixed;
-  width: 200px;
-  height: 200px;
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(108, 99, 255, 0.15),
-    transparent 70%
-  );
-  transform: translate(-50%, -50%);
-}
-
-/* ============================= */
-/* ⚡ SCROLLBAR */
-/* ============================= */
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #6c63ff;
-  border-radius: 10px;
-}
-
-/* ============================= */
-/* ✨ ANIMATIONS */
+/* ✨ SIMPLE ANIMATIONS */
 /* ============================= */
 
 .fade-up {
@@ -155,15 +108,71 @@ html {
 }
 
 /* ============================= */
-/* 🎯 HOVER EFFECTS */
+/* 🖱️ CURSOR */
 /* ============================= */
 
-.hover-scale {
-  transition: transform 0.25s ease;
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
 }
 
-.hover-scale:hover {
-  transform: scale(1.04);
+.cursor-inner {
+  padding: 5px 8px;
+  font-size: 10px;
+  border-radius: 6px;
+  background: #6c63ff;
+  color: white;
+}
+
+/* ============================= */
+/* 💥 RIPPLE */
+/* ============================= */
+
+.ripple {
+  position: fixed;
+  border-radius: 50%;
+  background: rgba(108, 99, 255, 0.4);
+  animation: rippleAnim 0.5s linear;
+  pointer-events: none;
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ============================= */
+/* 🔦 SPOTLIGHT */
+/* ============================= */
+
+.spotlight {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(108, 99, 255, 0.15),
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+}
+
+/* ============================= */
+/* 📊 SCROLLBAR */
+/* ============================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6c63ff;
+  border-radius: 10px;
 }
 
 /* ============================= */
@@ -172,4 +181,140 @@ html {
 
 .text-muted {
   color: #9ca3af;
+}
+
+/* ============================= */
+/* 🚫 IMPORTANT (PERFORMANCE RULE) */
+/* ============================= */
+
+/* ❌ DO NOT ADD THIS BACK */
+/* 
+* {
+  transition: all 0.2s ease;
+}
+*//* ============================= */
+/* 🚀 TECH STRIP 3D SYSTEM */
+/* ============================= */
+
+/* CONTINUOUS SCROLL */
+.tech-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll linear infinite;
+  animation-duration: 18s;
+}
+
+/* SPEED CONTROL */
+.tech-scroll.slow {
+  animation-duration: 28s;
+}
+.tech-scroll.medium {
+  animation-duration: 18s;
+}
+.tech-scroll.fast {
+  animation-duration: 10s;
+}
+
+/* SMOOTH LOOP */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* 🔥 3D CONTAINER */
+.tech-3d-container {
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease-out;
+}
+
+/* 🔥 3D ITEMS */
+.tech-item-3d {
+  opacity: 0.7;
+  transform: translateZ(0) scale(0.95);
+  transition: all 0.3s ease;
+}
+
+/* DEPTH FEEL */
+.tech-item-3d:hover {
+  transform: translateZ(40px) scale(1.15);
+  opacity: 1;
+}
+
+/* ICON GLOW */
+.icon-glow {
+  filter: drop-shadow(0 0 8px rgba(108, 99, 255, 0.6));
+}
+
+/* 🌈 MOVING LIGHT */
+.highlight {
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  animation: highlightMove 4s linear infinite;
+}
+
+@keyframes highlightMove {
+  from {
+    transform: translateX(-200px);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
+/* ============================= */
+/* 🚀 SCROLL SNAP SYSTEM */
+/* ============================= */
+
+.snap-container {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* ============================= */
+/* ✨ CARD GLOW EFFECT */
+/* ============================= */
+
+.glow-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.glow-card:hover {
+  box-shadow: 0 10px 30px rgba(108, 99, 255, 0.25);
+}
+
+/* subtle inner glow */
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at center,
+    rgba(108, 99, 255, 0.15),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-card:hover::before {
+  opacity: 1;
 }
