@@ -1,28 +1,54 @@
-import { lazy, Suspense } from "react";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 
-// 🔥 Lazy load all sections
-const Hero = lazy(() => import("../sections/Hero"));
-const About = lazy(() => import("../sections/About"));
-const Skills = lazy(() => import("../sections/Skills"));
-const Projects = lazy(() => import("../sections/Projects"));
-const Experience = lazy(() => import("../sections/Experience"));
-const HireMe = lazy(() => import("../sections/HireMe"));
-const ResumeCTA = lazy(() => import("../sections/ResumeCTA"));
-const Contact = lazy(() => import("../sections/Contact"));
-const Content = lazy(() => import("../sections/Content"));
+// SECTIONS
+import Hero from "../sections/Hero";
+import About from "../sections/About";
+import Skills from "../sections/Skills";
+import Experience from "../sections/Experience";
+import Projects from "../sections/Projects";
+import HireMe from "../sections/HireMe";
+import Content from "../sections/Content";
+import ResumeCTA from "../sections/ResumeCTA";
+import Contact from "../sections/Contact";
 
 export default function Home() {
   return (
-    <Suspense fallback={null}>
+    <div className="relative">
+
+      {/* NAVBAR */}
+      <Navbar />
+
+      {/* HERO (ENTRY POINT) */}
       <Hero />
+
+      {/* ABOUT (WHO YOU ARE) */}
       <About />
+
+      {/* SKILLS (WHAT YOU KNOW) */}
       <Skills />
-      <Projects />
+
+      {/* EXPERIENCE (WHAT YOU'VE DONE) */}
       <Experience />
-      <Content />
+
+      {/* PROJECTS (PROOF OF WORK) */}
+      <Projects />
+
+      {/* HIRE ME (WHAT YOU OFFER) */}
       <HireMe />
-      <ResumeCTA />
+
+      {/* CONTENT (PERSONAL BRAND) */}
+      <Content />
+
+      {/* RESUME CTA (CONVERSION) */}
+      
+
+      {/* CONTACT (FINAL ACTION) */}
       <Contact />
-    </Suspense>
+
+      {/* FOOTER */}
+      <Footer />
+
+    </div>
   );
 }
