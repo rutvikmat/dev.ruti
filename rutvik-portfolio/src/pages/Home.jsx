@@ -41,7 +41,7 @@ export default function Home() {
       <Content />
 
       {/* RESUME CTA (CONVERSION) */}
-      <ResumeCTA />
+      
 
       {/* CONTACT (FINAL ACTION) */}
       <Contact />

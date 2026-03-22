@@ -1,7 +1,7 @@
 const projects = [
   {
     title: "SYNCHER",
-    image: "/projects/syncher.png",
+    image: "/src/assets/images/projects/syncher.png",
     description:
       "AI-powered menstrual cycle prediction system with analytics and personalized insights.",
 
@@ -26,7 +26,7 @@ const projects = [
 
   {
     title: "Car Rental System",
-    image: "/projects/carrental.png",
+    image: "/src/assets/images/projects/carrental.png",
     description:
       "Full-stack car rental platform with booking, billing, and admin management system.",
 
@@ -51,7 +51,7 @@ const projects = [
 
   {
     title: "AI Nail Disease Classifier",
-    image: "/projects/nail-ai.png",
+    image: "/src/assets/images/projects/nail-ai.png",
     description:
       "AI-based image classification system to detect nail diseases with visual explanations.",
 
@@ -76,7 +76,7 @@ const projects = [
 
   {
     title: "Portfolio Website",
-    image: "/projects/portfolio.png",
+    image: "/src/assets/images/projects/portfolio.png",
     description:
       "Modern interactive portfolio with advanced animations and case-study project presentation.",
 
@@ -100,7 +100,7 @@ const projects = [
 
   {
     title: "JavaScript Learning Series",
-    image: "/projects/js-series.png",
+    image: "/src/assets/images/projects/js-series.png",
     description:
       "30-day structured JavaScript learning series with projects, reels, and educational content.",
 

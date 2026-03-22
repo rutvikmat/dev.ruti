@@ -1,18 +1,19 @@
 import { useRef } from "react";
 import useGsap from "../hooks/useGsap";
-import socialLinks from "../data/social";
+import TiltCard from "../components/ui/TiltCard";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
 
 export default function Content() {
   const ref = useRef();
 
-  // 🔥 Optimized GSAP animation
+  // 🔥 GSAP reveal
   useGsap((gsap) => {
-    gsap.from(".content-item", {
+    gsap.from(".content-anim", {
       opacity: 0,
-      y: 30,
-      duration: 0.5,
-      ease: "power2.out",
+      y: 40,
+      duration: 0.6,
       stagger: 0.12,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: ref.current,
         start: "top 85%",
@@ -20,129 +21,100 @@ export default function Content() {
     });
   }, []);
 
-  const platforms = [
+  const contentTypes = [
     {
-      name: "Instagram",
-      desc: "Short-form coding content helping developers learn faster.",
-      link: "https://www.instagram.com/dev.ruti/",
-      color: "text-pink-400",
+      title: "Reels & Short Content",
+      desc: "Quick, engaging reels explaining JavaScript concepts, React tricks, and coding tips in under 60 seconds.",
+      icon: "🎬",
     },
     {
-      name: "YouTube",
-      desc: "Full tutorials, project builds & deep dives.",
-      link: "https://www.youtube.com/@dev.ruties",
-      color: "text-red-400",
+      title: "Project-Based Learning",
+      desc: "Step-by-step breakdown of real-world projects like Car Rental systems, ML apps, and full-stack platforms.",
+      icon: "💻",
     },
     {
-      name: "LinkedIn",
-      desc: "Professional updates, projects & insights.",
-      link: "https://www.linkedin.com/in/rutvik-mathapati-3a5577208/",
-      color: "text-blue-400",
+      title: "System Design & Logic",
+      desc: "Simplified explanations of backend logic, APIs, authentication, and scalable architecture.",
+      icon: "⚙️",
+    },
+    {
+      title: "Developer Growth",
+      desc: "Roadmaps, learning strategies, and practical advice to help developers grow faster.",
+      icon: "📈",
     },
   ];
 
   return (
     <section
+      id="content"
       ref={ref}
       className="section relative overflow-hidden"
     >
-      {/* 🌌 LIGHT GLOW */}
-      <div className="absolute w-[400px] h-[400px] bg-indigo-500 opacity-10 blur-[60px] rounded-full bottom-0 right-0"></div>
+      {/* 🌌 BACKGROUND GLOW */}
+      <div className="absolute w-[500px] h-[500px] bg-indigo-500 opacity-10 blur-[80px] rounded-full top-0 left-1/2 -translate-x-1/2"></div>
 
       <div className="max-w-6xl mx-auto text-center">
 
-        {/* TITLE */}
-        <h2 className="text-4xl gradient-text mb-6 content-item">
+        {/* 🔥 TITLE */}
+        <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6 content-anim">
           Content & Community
         </h2>
 
-        {/* DESCRIPTION */}
-        <p className="text-gray-400 max-w-2xl mx-auto mb-12 content-item">
-          I share coding knowledge, real-world projects, and practical
-          insights to help developers grow faster.
+        <p className="text-gray-400 max-w-2xl mx-auto mb-12 content-anim">
+          I create content focused on helping developers learn faster through
+          real-world projects, practical coding, and simplified explanations of complex concepts.
         </p>
 
-        {/* PLATFORM CARDS */}
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* 🔥 PLATFORM CARDS */}
+        <div className="grid md:grid-cols-2 gap-8 mb-14">
 
-          {platforms.map((item, i) => (
-            <div
-              key={i}
-              className="content-item glass-strong p-6 rounded-2xl hover:scale-[1.03] transition gpu"
-            >
-              <h3 className={`text-xl font-semibold mb-2 ${item.color}`}>
-                {item.name}
-              </h3>
-
+          <TiltCard className="content-anim">
+            <div className="glass-strong p-6 rounded-2xl glow-card text-left space-y-3">
+              <div className="flex items-center gap-3 text-xl">
+                <FaInstagram className="text-pink-500" />
+                <h3 className="font-semibold">Instagram</h3>
+              </div>
               <p className="text-gray-400 text-sm">
-                {item.desc}
+                Short-form content including reels, coding tips, quick concepts,
+                and engaging developer content designed for fast learning.
               </p>
-
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="Visit"
-                className="inline-block mt-4 text-sm text-cyan-400 hover:underline"
-              >
-                🔗 Visit Platform
-              </a>
             </div>
+          </TiltCard>
+
+          <TiltCard className="content-anim">
+            <div className="glass-strong p-6 rounded-2xl glow-card text-left space-y-3">
+              <div className="flex items-center gap-3 text-xl">
+                <FaYoutube className="text-red-500" />
+                <h3 className="font-semibold">YouTube</h3>
+              </div>
+              <p className="text-gray-400 text-sm">
+                Long-form tutorials, full project builds, and deep dives into
+                development concepts and system design.
+              </p>
+            </div>
+          </TiltCard>
+
+        </div>
+
+        {/* 🔥 CONTENT TYPES */}
+        <div className="grid md:grid-cols-2 gap-6">
+
+          {contentTypes.map((item, i) => (
+            <TiltCard key={i} className="content-anim">
+              <div className="glass p-5 rounded-xl glow-card text-left space-y-2">
+                <div className="text-xl">{item.icon}</div>
+                <h3 className="text-sm font-semibold">{item.title}</h3>
+                <p className="text-gray-400 text-xs">{item.desc}</p>
+              </div>
+            </TiltCard>
           ))}
 
         </div>
 
-        {/* 📊 METRICS */}
-        <div className="mt-16 flex justify-center flex-wrap gap-10 content-item">
-
-          <div>
-            <h3 className="text-2xl font-bold">10K+</h3>
-            <p className="text-gray-500 text-sm">Learners Reached</p>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-bold">100+</h3>
-            <p className="text-gray-500 text-sm">Content Posts</p>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-bold">Daily</h3>
-            <p className="text-gray-500 text-sm">Consistency</p>
-          </div>
-
-        </div>
-
-        {/* SOCIAL ICONS */}
-        <div className="mt-10 flex justify-center gap-6 text-xl text-indigo-400 content-item">
-
-          {socialLinks.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <a
-                key={i}
-                href={item.url}
-                target="_blank"
-                rel="noreferrer"
-                data-cursor={item.name}
-                className="hover:scale-110 transition"
-              >
-                <Icon />
-              </a>
-            );
-          })}
-
-        </div>
-
-        {/* CTA */}
-        <div className="mt-12 content-item">
-          <a
-            href="https://www.instagram.com/dev.ruti/"
-            target="_blank"
-            rel="noreferrer"
-            className="bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 rounded-xl hover:opacity-90 transition"
-          >
-            Follow My Journey 🚀
-          </a>
+        {/* 🔥 FINAL LINE */}
+        <div className="mt-14 text-gray-400 max-w-3xl mx-auto content-anim">
+          My goal is to bridge the gap between theory and real-world development
+          by providing content that is practical, engaging, and directly applicable.
         </div>
 
       </div>

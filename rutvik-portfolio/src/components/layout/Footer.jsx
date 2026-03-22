@@ -1,66 +1,78 @@
-import socialLinks from "../../data/social";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="relative mt-20 border-t border-gray-800 overflow-hidden">
+    <footer className="relative z-10 mt-20 border-t border-gray-800 bg-[#0b0f1a]">
 
-      {/* 🌌 LIGHT GLOW */}
-      <div className="absolute w-[400px] h-[400px] bg-indigo-500 opacity-10 blur-[60px] rounded-full left-1/2 -translate-x-1/2 top-0"></div>
+      <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
 
-      <div className="max-w-6xl mx-auto px-6 py-12 text-center">
+        {/* BRAND */}
+        <div className="space-y-3">
+          <h2 className="text-xl font-bold gradient-text">
+            Rutvik.dev
+          </h2>
 
-        {/* NAME */}
-        <h2 className="text-xl font-semibold gradient-text">
-          Rutvik Mathapati
-        </h2>
-
-        <p className="text-gray-400 mt-2 text-sm">
-          Full Stack Developer • AI/ML • Content Creator
-        </p>
-
-        {/* NAV LINKS */}
-        <div className="flex justify-center gap-6 mt-6 text-sm text-gray-400">
-          <a href="#home">Home</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <p className="text-gray-400 text-sm">
+            Building scalable systems, modern web apps, and helping developers
+            learn through real-world projects.
+          </p>
         </div>
 
-        {/* SOCIAL */}
-        <div className="flex justify-center gap-6 mt-6 text-lg text-indigo-400">
-          {socialLinks.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <a
-                key={i}
-                href={item.url}
-                target="_blank"
-                rel="noreferrer"
-                data-cursor={item.name}
-                className="hover:scale-110 transition"
-              >
-                <Icon />
-              </a>
-            );
-          })}
+        {/* LINKS */}
+        <div>
+          <h3 className="text-sm font-semibold text-white mb-3">
+            Quick Links
+          </h3>
+
+          <div className="flex flex-col gap-2 text-sm text-gray-400">
+            {["home", "about", "skills", "projects", "experience", "contact"].map(
+              (id, i) => (
+                <a
+                  key={i}
+                  href={`#${id}`}
+                  className="hover:text-white transition"
+                >
+                  {id.charAt(0).toUpperCase() + id.slice(1)}
+                </a>
+              )
+            )}
+          </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-8">
-          <a
-            href="#contact"
-            data-cursor="Hire"
-            className="bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-2 rounded-xl hover:opacity-90 transition"
-          >
-            Let’s Work Together 🚀
-          </a>
-        </div>
+        {/* CONTACT */}
+        <div>
+          <h3 className="text-sm font-semibold text-white mb-3">
+            Connect
+          </h3>
 
-        {/* COPYRIGHT */}
-        <p className="text-gray-500 text-xs mt-8">
-          © {new Date().getFullYear()} Rutvik Mathapati
-        </p>
+          <div className="flex gap-4 text-lg text-gray-400">
+
+            <a href="#" className="hover:text-white transition">
+              <FaGithub />
+            </a>
+
+            <a href="#" className="hover:text-white transition">
+              <FaLinkedin />
+            </a>
+
+            <a href="mailto:your@email.com" className="hover:text-white transition">
+              <FaEnvelope />
+            </a>
+
+          </div>
+
+          <p className="text-gray-500 text-xs mt-3">
+            Open to internships, freelance & full-time roles.
+          </p>
+        </div>
 
       </div>
+
+      {/* BOTTOM */}
+      <div className="border-t border-gray-800 text-center py-4 text-gray-500 text-sm">
+        © {new Date().getFullYear()} Rutvik Mathapati
+      </div>
+
     </footer>
   );
 }
