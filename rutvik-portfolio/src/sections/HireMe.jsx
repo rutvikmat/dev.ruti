@@ -1,17 +1,19 @@
 import { useRef } from "react";
 import useGsap from "../hooks/useGsap";
+import TiltCard from "../components/ui/TiltCard";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function HireMe() {
   const ref = useRef();
 
-  // 🔥 Optimized GSAP animation
+  // 🔥 GSAP reveal
   useGsap((gsap) => {
-    gsap.from(".hire-item", {
+    gsap.from(".hire-anim", {
       opacity: 0,
-      y: 30,
-      duration: 0.5,
+      y: 40,
+      duration: 0.6,
+      stagger: 0.1,
       ease: "power2.out",
-      stagger: 0.12,
       scrollTrigger: {
         trigger: ref.current,
         start: "top 85%",
@@ -21,70 +23,117 @@ export default function HireMe() {
 
   return (
     <section
+      id="hire"
       ref={ref}
       className="section relative overflow-hidden text-center"
     >
-      {/* 🌌 LIGHT GLOW */}
-      <div className="absolute w-[400px] h-[400px] bg-indigo-500 opacity-10 blur-[60px] rounded-full bottom-0 left-1/2 -translate-x-1/2"></div>
+      {/* 🌌 BACKGROUND GLOW */}
+      <div className="absolute w-[500px] h-[500px] bg-indigo-500 opacity-10 blur-[100px] rounded-full top-0 left-1/2 -translate-x-1/2"></div>
 
-      <div className="max-w-4xl mx-auto gpu">
+      <div className="max-w-5xl mx-auto space-y-10">
 
-        {/* TITLE */}
-        <h2 className="text-4xl gradient-text mb-6 hire-item">
-          Let’s Build Something Great Together 🚀
-        </h2>
+        {/* 🔥 HEADLINE */}
+        <div className="space-y-4">
 
-        {/* DESCRIPTION */}
-        <p className="text-gray-400 mb-10 hire-item">
-          I’m available for internships, freelance projects, and full-time
-          opportunities. I specialize in building scalable systems and
-          real-world applications with clean architecture.
-        </p>
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text hire-anim">
+            Let’s Build Something Impactful
+          </h2>
 
-        {/* VALUE POINTS */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
+          <p className="text-gray-400 max-w-2xl mx-auto hire-anim">
+            I help companies and startups build scalable applications,
+            modern user experiences, and production-ready systems.
+          </p>
+
+        </div>
+
+        {/* 🔥 VALUE CARDS */}
+        <div className="grid md:grid-cols-3 gap-6">
 
           {[
-            "⚡ Scalable Web Applications",
-            "🔐 Secure Authentication Systems",
-            "💳 Payment Integration",
+            {
+              title: "Full Stack Systems",
+              desc: "End-to-end development from backend to frontend",
+            },
+            {
+              title: "Scalable Architecture",
+              desc: "Designed for performance and real-world usage",
+            },
+            {
+              title: "Fast Delivery",
+              desc: "Clean, efficient, and production-ready code",
+            },
           ].map((item, i) => (
-            <div
-              key={i}
-              className="hire-item glass p-4 rounded-xl text-sm hover:scale-[1.03] transition"
-            >
-              {item}
-            </div>
+            <TiltCard key={i} className="hire-anim">
+              <div className="glass-strong p-5 rounded-xl glow-card">
+                <h3 className="text-sm font-semibold">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-xs mt-1">
+                  {item.desc}
+                </p>
+              </div>
+            </TiltCard>
           ))}
 
         </div>
 
-        {/* CTA BUTTONS */}
-        <div className="flex flex-wrap justify-center gap-4 hire-item">
+        {/* 🔥 METRICS (TRUST BUILDER) */}
+        <div className="flex justify-center gap-10 flex-wrap hire-anim">
+
+          <div>
+            <h3 className="text-2xl font-bold text-indigo-400">
+              5+
+            </h3>
+            <p className="text-gray-400 text-sm">Projects</p>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-bold text-indigo-400">
+              10K+
+            </h3>
+            <p className="text-gray-400 text-sm">Learners</p>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-bold text-indigo-400">
+              2+
+            </h3>
+            <p className="text-gray-400 text-sm">Years Exp</p>
+          </div>
+
+        </div>
+
+        {/* 🔥 CTA BUTTONS */}
+        <div className="flex justify-center gap-4 flex-wrap hire-anim">
 
           <a
             href="#contact"
-            data-cursor="Hire"
-            className="bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 rounded-xl hover:opacity-90 transition"
+            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 hover:scale-105 transition"
           >
-            💼 Hire Me
+            <FaEnvelope /> Contact Me
           </a>
 
           <a
-            href="/resume.pdf"
+            href="https://github.com/yourusername"
             target="_blank"
-            rel="noreferrer"
-            data-cursor="Resume"
-            className="glass px-6 py-3 rounded-xl hover:scale-105 transition"
+            className="glass px-6 py-3 rounded-xl hover:scale-105 transition flex items-center gap-2"
           >
-            📄 View Resume
+            <FaGithub /> GitHub
+          </a>
+
+          <a
+            href="https://linkedin.com/in/yourprofile"
+            target="_blank"
+            className="glass px-6 py-3 rounded-xl hover:scale-105 transition flex items-center gap-2"
+          >
+            <FaLinkedin /> LinkedIn
           </a>
 
         </div>
 
-        {/* AVAILABILITY */}
-        <p className="mt-6 text-green-400 text-sm hire-item">
-          ● Available for opportunities
+        {/* 🔥 FINAL LINE */}
+        <p className="text-gray-500 text-sm hire-anim">
+          Open to internships, freelance, and full-time opportunities.
         </p>
 
       </div>

@@ -1,23 +1,23 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import useGsap from "../hooks/useGsap";
+import TiltCard from "../components/ui/TiltCard";
 import projects from "../data/projects";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Projects() {
   const ref = useRef();
 
-  // 🔥 Optimized GSAP (BATCH = HIGH PERFORMANCE)
-  useGsap((gsap, ScrollTrigger) => {
-    ScrollTrigger.batch(".project-card", {
-      onEnter: (batch) =>
-        gsap.from(batch, {
-          opacity: 0,
-          y: 40,
-          stagger: 0.1,
-          duration: 0.5,
-          ease: "power2.out",
-        }),
+  // 🔥 GSAP reveal
+  useGsap((gsap) => {
+    gsap.from(".proj-anim", {
+      opacity: 0,
+      y: 50,
+      duration: 0.6,
+      stagger: 0.12,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ref.current,
+        start: "top 85%",
+      },
     });
   }, []);
 
@@ -27,124 +27,140 @@ export default function Projects() {
       ref={ref}
       className="section relative overflow-hidden"
     >
-      {/* 🌌 LIGHT GLOW */}
-      <div className="absolute w-[500px] h-[500px] bg-indigo-500 opacity-10 blur-[60px] rounded-full top-0 left-1/2 -translate-x-1/2"></div>
+      {/* 🌌 BACKGROUND GLOW */}
+      <div className="absolute w-[500px] h-[500px] bg-indigo-500 opacity-10 blur-[80px] rounded-full bottom-0 left-1/2 -translate-x-1/2"></div>
 
       <div className="max-w-6xl mx-auto">
 
         {/* TITLE */}
-        <h2 className="text-4xl gradient-text text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold gradient-text text-center mb-16 proj-anim">
           Projects & Case Studies
         </h2>
 
-        {/* GRID */}
-        <div className="grid md:grid-cols-2 gap-10">
+        {/* PROJECT LIST */}
+        <div className="space-y-16">
 
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="project-card glass-strong p-6 rounded-2xl gpu hover:scale-[1.02] transition"
-            >
-              {/* IMAGE */}
-              {project.images?.length > 0 && (
-                <div className="overflow-hidden rounded-xl mb-4">
-                  <img
-                    src={project.images[0]}
-                    alt={project.title}
-                    className="w-full h-52 object-cover transition-transform duration-300 hover:scale-[1.03]"
-                  />
+          {projects.map((project, i) => (
+            <TiltCard key={i} className="proj-anim">
+
+              <div className="glass-strong p-6 md:p-8 rounded-2xl glow-card">
+
+                <div className="grid md:grid-cols-2 gap-10 items-center">
+
+                  {/* 🔥 LEFT: IMAGE */}
+                  <div className="overflow-hidden rounded-xl">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="rounded-xl hover:scale-105 transition duration-500"
+                    />
+                  </div>
+
+                  {/* 🔥 RIGHT: CONTENT */}
+                  <div className="space-y-4">
+
+                    <h3 className="text-2xl font-semibold">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-gray-400 text-sm">
+                      {project.description}
+                    </p>
+
+                    {/* 🔥 PROBLEM */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-white">
+                        Problem
+                      </h4>
+                      <p className="text-gray-400 text-xs">
+                        {project.problem}
+                      </p>
+                    </div>
+
+                    {/* 🔥 SOLUTION */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-white">
+                        Solution
+                      </h4>
+                      <p className="text-gray-400 text-xs">
+                        {project.solution}
+                      </p>
+                    </div>
+
+                    {/* 🔥 METRICS */}
+                    <div className="flex gap-4 flex-wrap mt-3">
+
+                      {project.metrics?.map((m, idx) => (
+                        <div
+                          key={idx}
+                          className="glass px-3 py-2 rounded-lg text-center"
+                        >
+                          <p className="text-sm font-bold text-indigo-400">
+                            {m.value}
+                          </p>
+                          <p className="text-xs text-gray-400">
+                            {m.label}
+                          </p>
+                        </div>
+                      ))}
+
+                    </div>
+
+                    {/* 🔥 TECH STACK */}
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {project.tech.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="glass px-2 py-1 text-xs rounded"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* 🔥 CTA */}
+                    <div className="flex gap-3 mt-4 flex-wrap">
+
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          className="px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-cyan-500 text-sm hover:scale-105 transition"
+                        >
+                          Live Demo
+                        </a>
+                      )}
+
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          className="glass px-4 py-2 rounded-lg text-sm hover:scale-105 transition"
+                        >
+                          GitHub
+                        </a>
+                      )}
+
+                      {project.case && (
+                        <a
+                          href={project.case}
+                          className="glass px-4 py-2 rounded-lg text-sm hover:scale-105 transition"
+                        >
+                          Case Study →
+                        </a>
+                      )}
+
+                    </div>
+
+                  </div>
+
                 </div>
-              )}
-
-              {/* TITLE */}
-              <h3 className="text-xl font-semibold">
-                {project.title}
-              </h3>
-
-              {/* TAGLINE */}
-              <p className="text-gray-400 text-sm mt-1">
-                {project.tagline}
-              </p>
-
-              {/* DESCRIPTION */}
-              <p className="text-gray-400 mt-3 text-sm">
-                {project.description}
-              </p>
-
-              {/* PROBLEM / SOLUTION */}
-              <div className="mt-4 space-y-2 text-sm">
-
-                <p>
-                  <span className="text-red-400 font-medium">
-                    Problem:
-                  </span>{" "}
-                  {project.problem}
-                </p>
-
-                <p>
-                  <span className="text-blue-400 font-medium">
-                    Solution:
-                  </span>{" "}
-                  {project.solution}
-                </p>
 
               </div>
 
-              {/* TECH STACK */}
-              <div className="flex flex-wrap gap-2 mt-4">
-                {project.tech.slice(0, 4).map((tech, i) => (
-                  <span
-                    key={i}
-                    className="glass px-2 py-1 rounded text-xs"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* ACTIONS */}
-              <div className="mt-6 flex justify-between items-center">
-
-                <Link
-                  to={`/project/${project.id}`}
-                  data-cursor="View"
-                  className="text-cyan-400 text-sm hover:underline"
-                >
-                  🔍 Case Study
-                </Link>
-
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  data-cursor="Code"
-                  className="text-indigo-400 text-sm hover:underline"
-                >
-                  💻 Code
-                </a>
-
-              </div>
-
-            </div>
+            </TiltCard>
           ))}
 
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-20">
-          <p className="text-gray-400 mb-4">
-            Explore more projects on GitHub
-          </p>
-
-          <a
-            href="https://github.com/rutvikmat"
-            target="_blank"
-            rel="noreferrer"
-            data-cursor="GitHub"
-            className="bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 rounded-xl hover:opacity-90 transition"
-          >
-            View All Projects 🚀
-          </a>
         </div>
 
       </div>

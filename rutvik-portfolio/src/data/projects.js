@@ -1,184 +1,125 @@
 const projects = [
   {
-    id: "car-rental",
+    title: "SYNCHER",
+    image: "/projects/syncher.png",
+    description:
+      "AI-powered menstrual cycle prediction system with analytics and personalized insights.",
 
+    problem:
+      "Users struggle to accurately predict menstrual cycles and track symptoms effectively.",
+
+    solution:
+      "Built an ML-based prediction system using real-world datasets and user inputs, integrated with analytics dashboard.",
+
+    metrics: [
+      { label: "Prediction Accuracy", value: "85%" },
+      { label: "Data Points", value: "10K+" },
+      { label: "Users Supported", value: "500+" },
+    ],
+
+    tech: ["Django", "Machine Learning", "Python", "Chart.js"],
+
+    live: "#",
+    github: "#",
+    case: "/projects/syncher",
+  },
+
+  {
     title: "Car Rental System",
-    tagline: "Scalable booking platform with payment integration",
-
+    image: "/projects/carrental.png",
     description:
-      "A full-stack Django-based web application that enables users to book cars online, manage rentals, and process payments seamlessly.",
+      "Full-stack car rental platform with booking, billing, and admin management system.",
 
     problem:
-      "Traditional car rental systems relied heavily on manual processes, leading to inefficiencies, booking errors, and poor user experience.",
+      "Manual booking systems lack automation, real-time tracking, and scalability.",
 
     solution:
-      "Developed a fully automated booking system with role-based access, Razorpay payment integration, and real-time booking management.",
+      "Developed a full-stack platform with dynamic booking system, payment integration, and admin dashboard.",
 
-    impact: [
-      "Reduced admin workload by 45%",
-      "Improved booking efficiency by 50%",
-      "Automated billing and payment workflows",
+    metrics: [
+      { label: "Modules", value: "10+" },
+      { label: "Transactions", value: "100+" },
+      { label: "System Efficiency", value: "High" },
     ],
 
-    tech: ["Django", "Python", "Razorpay", "MySQL", "Bootstrap"],
+    tech: ["Django", "MySQL", "JavaScript", "Bootstrap"],
 
-    images: [
-      "/projects/car1.png",
-      "/projects/car2.png",
-      "/projects/car3.png",
-    ],
-
-    features: [
-      "User authentication & role-based access",
-      "Online car booking system",
-      "Integrated payment gateway (Razorpay)",
-      "Admin dashboard for management",
-      "Automated billing & notifications",
-    ],
-
-    challenges: [
-      "Securely integrating payment gateway",
-      "Handling concurrent bookings efficiently",
-      "Optimizing database queries for performance",
-    ],
-
-    github: "https://github.com/rutvikmat",
     live: "#",
+    github: "#",
+    case: "/projects/car-rental",
   },
 
   {
-    id: "dairy-management",
-
-    title: "Dairy Farm Management System",
-    tagline: "Full-stack system for managing dairy operations",
-
+    title: "AI Nail Disease Classifier",
+    image: "/projects/nail-ai.png",
     description:
-      "A Java-based web application designed to manage dairy farm operations including inventory, production tracking, and user management.",
+      "AI-based image classification system to detect nail diseases with visual explanations.",
 
     problem:
-      "Manual tracking of dairy operations resulted in inefficiencies, data inconsistencies, and lack of real-time insights.",
+      "Users lack accessible tools for early detection of nail diseases.",
 
     solution:
-      "Developed a centralized system with admin and user dashboards to track operations and automate workflows.",
+      "Built a deep learning model with Grad-CAM visualization to provide explainable predictions.",
 
-    impact: [
-      "Improved operational efficiency by 60%",
-      "Reduced manual errors significantly",
-      "Enabled real-time monitoring of data",
+    metrics: [
+      { label: "Accuracy", value: "90%" },
+      { label: "Classes", value: "5+" },
+      { label: "Model Type", value: "CNN" },
     ],
 
-    tech: ["Java", "JSP", "MySQL", "HTML", "CSS"],
+    tech: ["Python", "TensorFlow", "Flask", "OpenCV"],
 
-    images: [
-      "/projects/dairy1.png",
-      "/projects/dairy2.png",
-    ],
-
-    features: [
-      "Admin & user dashboards",
-      "Inventory and production tracking",
-      "Data management system",
-      "Real-time updates",
-    ],
-
-    challenges: [
-      "Designing scalable backend logic",
-      "Managing relational database efficiently",
-      "Ensuring data consistency",
-    ],
-
-    github: "https://github.com/rutvikmat",
     live: "#",
+    github: "#",
+    case: "/projects/nail-ai",
   },
 
   {
-    id: "syncher",
-
-    title: "SYNCHER (Period Tracker)",
-    tagline: "ML-powered menstrual cycle prediction system",
-
+    title: "Portfolio Website",
+    image: "/projects/portfolio.png",
     description:
-      "A Django-based web application that predicts menstrual cycles using machine learning and provides analytics dashboards.",
+      "Modern interactive portfolio with advanced animations and case-study project presentation.",
 
     problem:
-      "Existing tracking apps lacked personalized insights and accurate prediction capabilities.",
+      "Traditional portfolios lack engagement and storytelling.",
 
     solution:
-      "Developed an ML-based prediction engine using real-world datasets combined with user input data for better accuracy.",
+      "Built a premium UI portfolio with GSAP animations, 3D interactions, and case-study based project showcase.",
 
-    impact: [
-      "Improved prediction accuracy significantly",
-      "Provided personalized health insights",
-      "Enhanced user engagement with analytics",
+    metrics: [
+      { label: "Performance", value: "95+" },
+      { label: "Sections", value: "8+" },
+      { label: "UI Level", value: "Premium" },
     ],
 
-    tech: ["Django", "Python", "Machine Learning", "Chart.js"],
+    tech: ["React", "GSAP", "Tailwind CSS"],
 
-    images: [
-      "/projects/syncher1.png",
-      "/projects/syncher2.png",
-    ],
-
-    features: [
-      "Cycle prediction using ML",
-      "User data tracking system",
-      "Analytics dashboard",
-      "Historical data visualization",
-    ],
-
-    challenges: [
-      "Improving prediction accuracy",
-      "Handling real-world dataset inconsistencies",
-      "Integrating ML model with web app",
-    ],
-
-    github: "https://github.com/rutvikmat",
     live: "#",
+    github: "#",
   },
 
   {
-    id: "nail-classifier",
-
-    title: "Nail Disease Classifier",
-    tagline: "AI-powered image classification with Grad-CAM",
-
+    title: "JavaScript Learning Series",
+    image: "/projects/js-series.png",
     description:
-      "A Flask-based AI application that detects nail diseases using CNN models and provides visual explanations using Grad-CAM.",
+      "30-day structured JavaScript learning series with projects, reels, and educational content.",
 
     problem:
-      "Users lacked accessible tools for early detection of nail diseases.",
+      "Beginners struggle with structured and practical JavaScript learning paths.",
 
     solution:
-      "Developed a deep learning model integrated into a web app with visual explanations to improve interpretability.",
+      "Created a complete roadmap with daily projects, reels, and structured content delivery.",
 
-    impact: [
-      "Improved accessibility to early diagnosis tools",
-      "Enhanced model transparency with Grad-CAM",
-      "Provided user-friendly AI interface",
+    metrics: [
+      { label: "Days", value: "30" },
+      { label: "Content Pieces", value: "100+" },
+      { label: "Reach", value: "10K+" },
     ],
 
-    tech: ["Flask", "TensorFlow", "CNN", "Grad-CAM"],
+    tech: ["JavaScript", "Content Strategy", "Teaching"],
 
-    images: [
-      "/projects/nail1.png",
-      "/projects/nail2.png",
-    ],
-
-    features: [
-      "Image upload and prediction",
-      "CNN-based classification",
-      "Grad-CAM visual explanation",
-      "User-friendly interface",
-    ],
-
-    challenges: [
-      "Training accurate CNN model",
-      "Improving model interpretability",
-      "Optimizing prediction performance",
-    ],
-
-    github: "https://github.com/rutvikmat",
     live: "#",
+    github: "#",
   },
 ];
 
