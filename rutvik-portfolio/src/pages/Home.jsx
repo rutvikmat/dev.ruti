@@ -19,7 +19,7 @@ export default function Home() {
       {/* NAVBAR */}
       <Navbar />
 
-      {/* HERO (ENTRY POINT) */}
+      {/* HERO (ENTRY POINT) */} 
       <Hero />
 
       {/* ABOUT (WHO YOU ARE) */}
